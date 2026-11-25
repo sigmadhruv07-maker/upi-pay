@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pay DHRUV PRATAP SINGH via UPI</title>
+    <!-- QR Code banane wali reliable library -->
+    <script src="https://cloudflare.com"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -38,13 +40,15 @@
             margin: 15px 0;
             user-select: all;
         }
-        .qr-box img {
-            width: 220px;
-            height: auto;
-            border-radius: 10px;
-            border: 4px solid #ffffff;
-            margin: 10px 0;
+        #qrcode {
             background: #ffffff;
+            padding: 12px;
+            border-radius: 12px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        #qrcode img {
+            margin: auto;
         }
         .btn {
             display: block;
@@ -70,10 +74,8 @@
     <h1>DHRUV PRATAP SINGH</h1>
     <div class="upi-id">UPI ID: <b>dprxmodzowner@naviaxis</b></div>
     
-    <div class="qr-box">
-        <!-- Yahan aapki upload ki hui qr.png file seedha dikhegi -->
-        <img src="qr.png" alt="UPI QR Code">
-    </div>
+    <!-- QR code yahan apne aap ban jayega -->
+    <div id="qrcode"></div>
 
     <a href="upi://pay?pa=dprxmodzowner@naviaxis&pn=DHRUV%20PRATAP%20SINGH&cu=INR" class="btn">
         Open UPI App to Pay
@@ -81,6 +83,18 @@
 
     <div class="note">Choose any UPI app (PhonePe / GPay / Paytm / Navi) when prompted.</div>
 </div>
+
+<script>
+    // Page load hote hi live QR code generate karega
+    new QRCode(document.getElementById("qrcode"), {
+        text: "upi://pay?pa=dprxmodzowner@naviaxis&pn=DHRUV%20PRATAP%20SINGH&cu=INR",
+        width: 200,
+        height: 200,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+    });
+</script>
 
 </body>
 </html>
